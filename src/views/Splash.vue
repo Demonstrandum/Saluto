@@ -34,6 +34,7 @@ export default {
 
 <style lang="scss" scoped>
 #splash {
+  cursor: none;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -54,7 +55,7 @@ export default {
 }
 
 #trigger {
-  font-family: "Inter";
+  font-family: "Alte Haas Grotesk";
   font-weight: 400;
   font-size: 16px;
   cursor: default;

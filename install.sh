@@ -12,7 +12,7 @@ if [ -d "$THEME_INSTALL_DIR" ]; then
     echo "Done."
 fi
 
-# Copies over default wallpapers.
+# Copies over default images.
 echo "Copying over default images/backgrounds..."
 [ -d ./src/assets/images ] && rm -rf ./src/assets/images
 mkdir -p ./src/assets/images
@@ -32,8 +32,8 @@ IFS="
 for wall_dir in $WALL_DIRS; do
     if [ -d "$HOME/$wall_dir" ]; then
         echo "Copying backgrounds from ~/$wall_dir..."
-        cp "$HOME/$wall_dir/"* ./src/assets/images >/dev/null 2>&1
-        sudo cp ./src/assets/images/* /usr/share/backgrounds >/dev/null 2>&1
+        cp "$HOME/$wall_dir/"* ./src/assets/images/wallpapers >/dev/null 2>&1
+        sudo cp ./src/assets/images/wallpapers/* /usr/share/backgrounds
         echo "Done."
         break
     fi

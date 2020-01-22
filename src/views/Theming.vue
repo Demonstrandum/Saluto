@@ -189,7 +189,7 @@ export default {
   color: $outer-foreground;
   text-align: left;
 
-  font-family: "Inter";
+  font-family: "Alte Haas Grotesk";
 
   padding: 35px;
   box-sizing: border-box;
@@ -284,7 +284,7 @@ export default {
     margin-left: 8px;
 
     font-size: 16px;
-    font-family: "Inter";
+    font-family: "Alte Haas Grotesk";
   }
 }
 

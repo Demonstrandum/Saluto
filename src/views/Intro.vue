@@ -61,6 +61,7 @@ export default {
 @import "../theme";
 
 #intro {
+  cursor: none;
   background-color: $outer-background;
   display: flex;
   align-items: center;

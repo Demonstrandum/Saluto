@@ -54,6 +54,6 @@ export default {
 }
 
 .blured {
-  filter: blur(10px);
+  filter: blur(30px);
 }
 </style>

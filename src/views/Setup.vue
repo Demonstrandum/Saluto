@@ -121,7 +121,7 @@ export default {
 @import "../theme";
 
 #setup {
-  font-family: "Inter";
+  font-family: "Alte Haas Grotesk";
   font-weight: 400;
   color: $outer-foreground;
 }
