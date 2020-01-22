@@ -51,9 +51,11 @@ if [ -z "$NPM" ]; then
 fi
 
 # Install packages.
-echo "Installing npm packages..."
-$NPM install
-echo "Done."
+if [ ! -d ./node_modules ]; then
+    echo "\`node_modules\` not found, installing packages..."
+    $NPM install
+    echo "Done."
+fi
 
 # `npm` build.
 echo "Running Vue setup..."
@@ -79,11 +81,11 @@ echo "Done"
 echo
 echo "$(tput bold)--- NOTE ---$(tput sgr0)"
 echo "  Remember to edit your lightdm config files accordingly:"
-echo "  In \`/etc/lightdm/lightdm.conf\`:$(tput setaf 3)"
+echo "  - In \`/etc/lightdm/lightdm.conf\`:$(tput setaf 3)"
 echo "      [Seat:*]"
 echo "      greeter-session=lightdm-webkit2-greeter"
 tput sgr0
-echo "  In \`/etc/lightdm/lightdm-webkit2-greeter.conf\`:$(tput setaf 3)"
+echo "  - In \`/etc/lightdm/lightdm-webkit2-greeter.conf\`:$(tput setaf 3)"
 echo "      [greeter]"
 echo "      webkit_theme=eh8"
 tput sgr0
