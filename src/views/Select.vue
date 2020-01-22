@@ -53,7 +53,7 @@ export default {
   align-items: center;
   justify-content: center;
 
-  font-family: "Inter";
+  font-family: "Alte Haas Grotesk";
   font-weight: normal;
   font-size: 16px;
 

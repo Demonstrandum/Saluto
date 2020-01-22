@@ -78,7 +78,7 @@ export default {
 }
 
 #power-text {
-  font-family: "Inter";
+  font-family: "Alte Haas Grotesk";
   font-weight: normal;
   color: $outer-foreground;
   font-size: 16px;

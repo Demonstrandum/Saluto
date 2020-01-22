@@ -136,7 +136,7 @@ export default {
   width: 45px;
   height: 45px;
 
-  margin-right: 12px;
+  margin-right: 20px;
 }
 
 .item.user .icon-container {

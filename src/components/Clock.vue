@@ -71,7 +71,7 @@
     .clock {
         font-size: 164px;
         font-weight: bold;
-        font-family: 'Inter';
+        font-family: 'Alte Haas Grotesk';
         line-height: 1.1;
 
         text-align: center;

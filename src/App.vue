@@ -36,6 +36,28 @@
         }
     }
 
+    @font-face {
+        font-family: 'Alte Haas Grotesk';
+        src: url('assets/fonts/AlteHaasGroteskRegular.ttf');
+    }
+
+    @font-face {
+        font-family: 'Alte Haas Grotesk';
+        font-weight: bold;
+        src: url('assets/fonts/AlteHaasGroteskBold.ttf');
+    }
+
+    @font-face {
+        font-family: 'Input Mono';
+        src: url('assets/fonts/InputMono-Regular.ttf');
+    }
+
+    @font-face {
+        font-family: 'Input Mono';
+        font-style: italic;
+        src: url('assets/fonts/InputMono-Italic.ttf');
+    }
+
     html, body, #app, #app > *, .base > * {
         margin: 0;
         padding: 0;
