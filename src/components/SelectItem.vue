@@ -34,56 +34,52 @@ export default {
 
       if (this.mode === "desktop") {
         let key = this.item.key.toLowerCase();
-        let icon;
+        let icon = "unknown";
 
         if (key.indexOf("plasma") > -1 || key.indexOf("kde") > -1) {
           icon = "kde";
         }
-        if (key.indexOf("gnome") > -1) {
+        else if (key.indexOf("gnome") > -1) {
           icon = "gnome";
         }
-        if (key.indexOf("xfce") > -1) {
+        else if (key.indexOf("xfce") > -1) {
           icon = "xfce";
         }
-        if (key.indexOf("unity") > -1 || key.indexOf("ubuntu") > -1) {
+        else if (key.indexOf("unity") > -1 || key.indexOf("ubuntu") > -1) {
           icon = "ubuntu";
         }
-        if (key.indexOf("dde") > -1 || key.indexOf("deepin") > -1) {
+        else if (key.indexOf("dde") > -1 || key.indexOf("deepin") > -1) {
           icon = "deepin";
         }
-        if (key.indexOf("lxde") > -1 || key.indexOf("lxqt") > -1) {
+        else if (key.indexOf("lxde") > -1 || key.indexOf("lxqt") > -1) {
           icon = "lxde";
         }
-        if (key.indexOf("pantheon") > -1 || key.indexOf("elementary") > -1) {
+        else if (key.indexOf("pantheon") > -1 || key.indexOf("elementary") > -1) {
           icon = "elementary";
         }
-        if (key.indexOf("mate") > -1) {
+        else if (key.indexOf("mate") > -1) {
           icon = "mate";
         }
-        if (key.indexOf("cinnamon") > -1 || key.indexOf("mint") > -1) {
+        else if (key.indexOf("cinnamon") > -1 || key.indexOf("mint") > -1) {
           icon = "cinnamon";
         }
-        if (
+        else if (
           key.indexOf("enlightenment") > -1 ||
           (key.length === 3 && /e[1-9]{2}/g.test(key))
         ) {
           icon = "enlightenment";
         }
-        if (key.indexOf("liri") > -1) {
+        else if (key.indexOf("liri") > -1) {
           icon = "liri";
         }
-        if (key.indexOf("i3") > -1) {
+        else if (key.indexOf("i3") > -1) {
           icon = "i3";
         }
-        if (key.indexOf("xmonad") > -1) {
+        else if (key.indexOf("xmonad") > -1) {
           icon = "xmonad";
         }
-        if (key.indexOf("budgie") > -1 || key.indexOf("solus") > -1) {
+        else if (key.indexOf("budgie") > -1 || key.indexOf("solus") > -1) {
           icon = "budgie";
-        }
-
-        if (!icon) {
-          return "";
         }
 
         return require("../assets/images/desktops/" + icon + ".png");

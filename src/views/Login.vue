@@ -33,7 +33,7 @@
         <div v-else id="password" class="immutable"></div>
         <div id="info">{{ info }}</div>
 
-        <!-- <SelectItem mode="desktop" :item="settings.desktop" @select="!immutable && $router.push('/base/select/desktop')" /> -->
+        <SelectItem mode="desktop" :item="settings.desktop" @select="!immutable && $router.push('/base/select/desktop')" />
       </div>
     </div>
 
