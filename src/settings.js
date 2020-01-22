@@ -4,7 +4,7 @@ if (local === "undefined") {
   local = null;
 }
 
-export let settings = (local ? JSON.parse(local) : null) || {
+export let settings = local ? JSON.parse(local) : {
   first: true,
 
   mode: "classic",
@@ -40,18 +40,18 @@ export function save(s) {
   );
 }
 
-export function avatar(avatar) {
-  if (!avatar || avatar === "") {
+export function avatar(avi) {
+  if (!avi || avi === "") {
     return require("./assets/images/eh8.png");
   }
 
-  if (avatar === "eh8") {
+  if (avi === "eh8") {
     return require("./assets/images/eh8.png");
   }
 
-  if (avatar === "litarvan") {
+  if (avi === "litarvan") {
     return require("./assets/images/litarvan.png");
   }
 
-  return avatar;
+  return avi;
 }

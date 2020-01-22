@@ -137,6 +137,7 @@ export default {
   #avatar,
   #login-form {
     display: inline-block;
+    vertical-align: top;
   }
 
   #avatar {
@@ -215,12 +216,12 @@ export default {
 }
 
 .item.user {
-  margin-top: 3.5vh;
+  margin-top: 0 /*3.5vh*/;
 }
 
 #password {
   font-weight: 400;
-  font-family: "Inter";
+  font-family: "Input Mono";
 }
 
 #password,
@@ -246,7 +247,7 @@ export default {
   height: 40px;
 
   border: 4px solid transparent;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 #password.error {
@@ -269,7 +270,7 @@ export default {
 
 .item.desktop {
   margin-top: 6vh;
-  display: inline-block;
+  display: inline-flex;
 }
 
 .item.user {

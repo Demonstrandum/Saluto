@@ -10,7 +10,7 @@
     </div>
     {{ mode === 'user' ? item.display_name : item.name }}
     <span v-if="mode === 'user'">
-      /
+      &nbsp;&mdash;&nbsp;
       <span class="username">{{ item.username }}</span>
     </span>
   </div>
@@ -91,9 +91,9 @@ export default {
 
 <style lang="scss" scoped>
 .item {
-  font-family: "Inter";
+  font-family: "Input Mono";
 
-  border-radius: 5px;
+  border-radius: 10px;
   transition: background-color 125ms ease-in-out;
 
   min-width: 150px;
@@ -113,7 +113,10 @@ export default {
   font-weight: 400;
   font-size: 16px;
   padding: 7px 19px;
-  margin-bottom: 20px;
+  margin-right: 10px;
+  display: inline-flex;
+  /*justify-content: center;*/
+  align-items: center;
 }
 
 .item.user {
@@ -133,7 +136,7 @@ export default {
   width: 45px;
   height: 45px;
 
-  margin-right: 6px;
+  margin-right: 12px;
 }
 
 .item.user .icon-container {
