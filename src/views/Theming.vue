@@ -42,7 +42,7 @@
       </div>
 
       <div id="background-theming">
-        <img id="background" :src="backgrounds[background]" />
+        <img id="background" :src="backgrounds[background].default" />
         <div id="background-switch">
           <img src="../assets/images/back.svg" @click="prevBG" />
           <span class="background-label">Background</span>

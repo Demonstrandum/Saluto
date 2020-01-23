@@ -8,6 +8,7 @@ THEME_INSTALL_DIR="/usr/share/lightdm-webkit/themes/eh8"
 
 if [ -d "$THEME_INSTALL_DIR" ]; then
     echo "Removing old copy of LightDM theme..."
+    echo "  You might need a password for this."
     sudo rm -rf "$THEME_INSTALL_DIR"
     echo "Done."
 fi
@@ -25,19 +26,48 @@ Pictures/wallpapers
 Pictures/Wallpaper
 Pictures/wallpaper"
 
+WALL_ASSETS="./src/assets/images/wallpapers"
+
 setopt sh_word_split 2>/dev/null
 IFS_OLD="$IFS"
 IFS="
 "
 for wall_dir in $WALL_DIRS; do
     if [ -d "$HOME/$wall_dir" ]; then
-        echo "Copying backgrounds from ~/$wall_dir..."
-        cp "$HOME/$wall_dir/"* ./src/assets/images/wallpapers >/dev/null 2>&1
-        sudo cp ./src/assets/images/wallpapers/* /usr/share/backgrounds
+        echo "  Copying backgrounds from ~/$wall_dir..."
+        cp "$HOME/$wall_dir"/* "$WALL_ASSETS" >/dev/null 2>&1
         echo "Done."
         break
     fi
 done
+
+# Pre-blur wallpapers.
+MAGICK="$(command -v convert)"
+
+if [ -z "$MAGICK" ]; then
+    echo "ImageMagick \`convert\` not installed."
+    echo "Please install ImageMagick for blurring."
+    echo "Exiting..."
+    exit
+fi
+
+mkdir -p "$WALL_ASSETS/blurred"
+echo "Blurring wallpapers..."
+for wall in "$WALL_ASSETS"/*; do
+    if [ -f "$wall" ]; then
+        wall_base="$(basename "$wall")"
+        echo "  Converting $wall_base..."
+        $MAGICK -quiet -regard-warnings\
+            "$WALL_ASSETS/$wall_base" -resize 1500 -filter Gaussian -resize 25% \
+            -define filter:sigma=3 -resize 400%  "$WALL_ASSETS/blurred/$wall_base"
+    fi
+done
+
+# Copy to /usr/share.
+echo "Copying wallpapers to /usr/share/backgrounds..."
+echo "  You might need to give your password for this one."
+sudo cp -rf "$WALL_ASSETS"/* /usr/share/backgrounds
+
 
 IFS="$IFS_OLD"
 

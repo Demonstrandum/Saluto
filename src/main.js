@@ -1,3 +1,6 @@
+// Uncoment to clear cache when debugging.
+/* localStorage.clear(); */
+
 import Vue from 'vue';
 import './lightdm';
 

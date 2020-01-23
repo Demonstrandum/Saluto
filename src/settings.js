@@ -23,13 +23,14 @@ export let settings = local ? JSON.parse(local) : {
   desktop: lightdm.sessions[0]
 };
 
-// Handle display name change
-lightdm.users.forEach(
-  u => settings.user.username === u.username && (settings.user = u)
-);
-lightdm.sessions.forEach(
-  s => settings.desktop.username === s.key && (settings.desktop = s)
-);
+// Handle display name/avatar change.
+lightdm.users.forEach(u => {
+    settings.user = u;
+});
+// Handle changes to sessions.
+lightdm.sessions.forEach(s => {
+    settings.desktop = s;
+});
 
 save();
 
