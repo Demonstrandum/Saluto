@@ -24,15 +24,12 @@ export function updateColor(hex) {
 
 export function updateBG(bg) {
     background = bg;
-    console.log('SETTING BACKGROUNDS TO:');
-    console.log(bg.default);
-    console.log(bg.blurred);
     localStorage.setItem('background', bg.default);
     localStorage.setItem('background_blurred', bg.blurred);
 }
 
 export function backgrounds() {
-    const recDirlist = dir => {
+    const dirlist = dir => {
         let files = [];
         for (const file of theme_utils.dirlist(dir)) {
             if (file.includes('.')) { // Really awful way of checking if it's a file...
@@ -46,12 +43,10 @@ export function backgrounds() {
                 });
             }
         }
-
         return files;
     };
 
-    let result = recDirlist(greeter_config.branding.background_images);
-
+    let result = dirlist(greeter_config.branding.background_images);
     return [DEFAULT_BG, ...result];
 }
 
@@ -61,16 +56,10 @@ function getBackground() {
         return bgs[Math.floor(Math.random() * bgs.length)];
     }
 
-    let bg;
     if (!localStorage.getItem('background'))
-        bg = DEFAULT_BG;
-    else
-        bg = {
-            default: localStorage.getItem('background'),
-            blurred: localStorage.getItem('background_blurred')
-        }
-    console.log('GOT CACHED BACKGROUNDS AS:');
-    console.log(bg.default);
-    console.log(bg.blurred);
-    return bg;
+        return DEFAULT_BG;
+    return {
+        default: localStorage.getItem('background'),
+        blurred: localStorage.getItem('background_blurred')
+    }
 }

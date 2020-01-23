@@ -91,9 +91,9 @@ export default {
     avatar,
     keyup(event) {
       if (event.which === 27) {
-        this.$router.push(
-          settings.disableSplash ? "/base/login" : "/base/splash"
-        );
+        let path = settings.disableSplash ? "/base/login" : "/base/splash";
+        if (this.$route.path !== path)
+            this.$router.push(path).catch(() => {});
       }
 
       if (event.getModifierState("CapsLock")) {

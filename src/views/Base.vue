@@ -2,9 +2,9 @@
   <div class="base">
     <div
       class="bg"
-      :style="{ 'background-image': 'url(' + (isBlurred() ? background.blurred : background.default) + ')' }"
+      :class="{ blurred: isBlurred() }"
+      :style="{ 'background-image': 'url(' + this.current_background + ')' }"
     ></div>
-
     <transition name="fade">
       <router-view />
     </transition>
@@ -19,14 +19,20 @@ export default {
 
   data() {
     return {
-      background,
+      current_background: background.default,
     };
   },
   methods: {
     isBlurred() {
       let name = this.$router.currentRoute.name;
-      return name === "login" || name === "select";
-    }
+      let blur_now = name === "login" || name === "select";
+      if (blur_now)
+        this.current_background = background.blurred;
+      else
+        this.current_background = background.default;
+
+      return blur_now;
+    },
   }
 };
 </script>

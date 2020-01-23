@@ -24,9 +24,9 @@ export default {
   },
   methods: {
     submit(event) {
-      if (event.which === 13 || event.which === 32) {
-        this.$router.push("/base/login");
-      }
+      if (event.which === 13 || event.which === 32)
+        if (this.$route.path !== "/base/login")
+          this.$router.push("/base/login");
     }
   }
 };

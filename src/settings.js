@@ -25,11 +25,12 @@ export let settings = local ? JSON.parse(local) : {
 
 // Handle display name/avatar change.
 lightdm.users.forEach(u => {
-    settings.user = u;
+    if (settings.user.username === u.username)
+        settings.user = u;
 });
-// Handle changes to sessions.
 lightdm.sessions.forEach(s => {
-    settings.desktop = s;
+    if (settings.desktop.username === s.key)
+        settings.desktop = s;
 });
 
 save();

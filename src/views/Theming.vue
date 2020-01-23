@@ -83,14 +83,13 @@ export default {
   components: { Checkbox, PowerButton },
 
   mounted() {
-    this.hex = this.color; // To call the watcher
-
     for (const bg in this.backgrounds) {
-      if (background === this.backgrounds[bg]) {
+      if (background.default === this.backgrounds[bg].default) {
         this.background = +bg;
         break;
       }
     }
+    this.hex = this.color; // To call the watcher
   },
   data() {
     return {
