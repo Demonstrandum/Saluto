@@ -1,5 +1,6 @@
 <template>
-    <div id="app" :class="{ 'disableZoom': disableZoom }">
+    <div id="app"
+        :class="{ 'disableZoom': disableZoom }">
         <transition name="fade">
             <router-view/>
         </transition>
@@ -25,7 +26,7 @@
     @import '_theme';
 
     html.lightdm {
-        background: $outer-background !important;
+        background: $outer-background;
         color: $secondary-color;
     }
 
@@ -56,6 +57,10 @@
         font-family: 'Input Mono';
         font-style: italic;
         src: url('assets/fonts/InputMono-Italic.ttf');
+    }
+
+    #app {
+        background-size: cover;
     }
 
     html, body, #app, #app > *, .base > * {

@@ -1,10 +1,8 @@
 <template>
   <div class="base">
-    <div
-      class="bg"
-      :class="{ blurred: isBlurred() }"
-      :style="{ 'background-image': 'url(' + this.current_background + ')' }"
-    ></div>
+    <div class="bg"
+         :style="{ 'background-image': 'url(' + current_background.default + ')' }">
+    </div>
     <transition name="fade">
       <router-view />
     </transition>
@@ -19,7 +17,7 @@ export default {
 
   data() {
     return {
-      current_background: background.default,
+      current_background: background,
     };
   },
   methods: {

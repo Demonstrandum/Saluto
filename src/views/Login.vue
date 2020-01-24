@@ -1,5 +1,7 @@
 <template>
-  <div class="login" :class="{ 'compact': isCompact }">
+  <div id="login" class="login"
+    :class="{ 'compact': isCompact }"
+    :style="{ 'background-image': 'url(' + current_background.blurred + ')' }">
     <Clock :small="true" v-if="isCompact" />
 
     <div id="login-content" :class="{ 'no-avatar': settings.disableAvatar }">
@@ -60,6 +62,7 @@ import Clock from "@/components/Clock.vue";
 import { avatar, settings } from "@/settings";
 import { trans } from "@/translations";
 import SelectItem from "../components/SelectItem";
+import { background } from '../themer';
 
 export default {
   name: "login",
@@ -76,7 +79,7 @@ export default {
       logging: false,
       error: false,
       info: "",
-
+      current_background: background,
       password: ""
     };
   },
@@ -128,6 +131,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "../theme";
+.login {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+}
 
 .login.compact {
   .clock {

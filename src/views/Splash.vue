@@ -1,5 +1,7 @@
 <template>
-  <div id="splash" :class="{ 'clock-only': clockOnly }">
+  <div id="splash"
+    :class="{ 'clock-only': clockOnly }"
+    :style="{ 'background-image': 'url(' + current_background.default + ')' }">
     <Clock />
     <div v-if="!clockOnly" id="trigger">{{ trigger }}</div>
   </div>
@@ -9,6 +11,7 @@
 import Clock from "@/components/Clock.vue";
 import { trans } from "@/translations";
 import { settings } from "@/settings";
+import { background } from '../themer';
 
 export default {
   name: "splash",
@@ -19,6 +22,7 @@ export default {
   data() {
     return {
       trigger: trans("trigger"),
+      current_background: background,
       clockOnly: settings.disableSplashText
     };
   },
@@ -34,6 +38,9 @@ export default {
 
 <style lang="scss" scoped>
 #splash {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
   cursor: none;
   display: flex;
   justify-content: space-between;
