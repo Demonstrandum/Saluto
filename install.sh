@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ARROW="$(tput setaf 4)$(tput bold)->$(tput sgr0)"
+
 echo "$(tput bold)Building lightdm-eh8"
 tput sgr0
 
@@ -7,69 +9,82 @@ tput sgr0
 THEME_INSTALL_DIR="/usr/share/lightdm-webkit/themes/eh8"
 
 if [ -d "$THEME_INSTALL_DIR" ]; then
-    echo "Removing old copy of LightDM theme..."
+    echo "$ARROW Removing old copy of LightDM theme..."
     echo "  You might need a password for this."
     sudo rm -rf "$THEME_INSTALL_DIR"
     echo "Done."
 fi
 
-# Copies over default images.
-echo "Copying over default images/backgrounds..."
-[ -d ./src/assets/images ] && rm -rf ./src/assets/images
-mkdir -p ./src/assets/images
-cp -rf ./src/assets/default_images/* ./src/assets/images
+# Ask if we should rebuild the images/ directory.
+answer=y
+if [ -d ./src/assets/images ]; then
+    echo
+    echo "Looks like we already have your wallpapers..."
+    printf "  Would you like to rebuild this wallpaper folder? [y/N]: "
+    read -r answer
+    [ -z "$answer" ] && answer=n
+fi
 
-# Copies over wallpapers.
-WALL_DIRS="\
+# Copies over default images.
+if [ "$answer" = y ] || [ "$answer" = Y ]; then
+    echo
+    echo "$ARROW Copying over default images/backgrounds..."
+    [ -d ./src/assets/images ] && rm -rf ./src/assets/images
+    mkdir -p ./src/assets/images
+    cp -rf ./src/assets/default_images/* ./src/assets/images
+
+    # Copies over wallpapers.
+    WALL_DIRS="\
 Pictures/Wallpapers
 Pictures/wallpapers
 Pictures/Wallpaper
 Pictures/wallpaper"
 
-WALL_ASSETS="./src/assets/images/wallpapers"
+    WALL_ASSETS="./src/assets/images/wallpapers"
 
-setopt sh_word_split 2>/dev/null
-IFS_OLD="$IFS"
-IFS="
+    setopt sh_word_split 2>/dev/null
+    IFS_OLD="$IFS"
+    IFS="
 "
-for wall_dir in $WALL_DIRS; do
-    if [ -d "$HOME/$wall_dir" ]; then
-        echo "  Copying backgrounds from ~/$wall_dir..."
-        cp "$HOME/$wall_dir"/* "$WALL_ASSETS" >/dev/null 2>&1
-        echo "Done."
-        break
+    for wall_dir in $WALL_DIRS; do
+        if [ -d "$HOME/$wall_dir" ]; then
+            echo "  $ARROW Copying backgrounds from ~/$wall_dir..."
+            cp "$HOME/$wall_dir"/* "$WALL_ASSETS" >/dev/null 2>&1
+            echo "Done."
+            break
+        fi
+    done
+
+    # Pre-blur wallpapers.
+    MAGICK="$(command -v convert)"
+
+    if [ -z "$MAGICK" ]; then
+        echo "ImageMagick \`convert\` not installed."
+        echo "Please install ImageMagick for blurring."
+        echo "Exiting..."
+        exit
     fi
-done
 
-# Pre-blur wallpapers.
-MAGICK="$(command -v convert)"
+    mkdir -p "$WALL_ASSETS/blurred"
+    echo "$ARROW Blurring wallpapers..."
+    for wall in "$WALL_ASSETS"/*; do
+        if [ -f "$wall" ]; then
+            wall_base="$(basename "$wall")"
+            echo "  $ARROW Converting $wall_base..."
+            $MAGICK -quiet -regard-warnings\
+                "$WALL_ASSETS/$wall_base" -resize 1500 -filter Gaussian -resize 25% \
+                -define filter:sigma=3 -resize 400%  "$WALL_ASSETS/blurred/$wall_base"
+        fi
+    done
 
-if [ -z "$MAGICK" ]; then
-    echo "ImageMagick \`convert\` not installed."
-    echo "Please install ImageMagick for blurring."
-    echo "Exiting..."
-    exit
+    # Copy to /usr/share.
+    echo "$ARROW Copying wallpapers to /usr/share/backgrounds..."
+    echo "  You might need to give your password for this one."
+    sudo cp -rf "$WALL_ASSETS"/* /usr/share/backgrounds
+
+
+    IFS="$IFS_OLD"
 fi
-
-mkdir -p "$WALL_ASSETS/blurred"
-echo "Blurring wallpapers..."
-for wall in "$WALL_ASSETS"/*; do
-    if [ -f "$wall" ]; then
-        wall_base="$(basename "$wall")"
-        echo "  Converting $wall_base..."
-        $MAGICK -quiet -regard-warnings\
-            "$WALL_ASSETS/$wall_base" -resize 1500 -filter Gaussian -resize 25% \
-            -define filter:sigma=3 -resize 400%  "$WALL_ASSETS/blurred/$wall_base"
-    fi
-done
-
-# Copy to /usr/share.
-echo "Copying wallpapers to /usr/share/backgrounds..."
-echo "  You might need to give your password for this one."
-sudo cp -rf "$WALL_ASSETS"/* /usr/share/backgrounds
-
-
-IFS="$IFS_OLD"
 
 # Check if npm is installed.
 NPM="$(command -v npm)"
@@ -82,19 +97,19 @@ fi
 
 # Install packages.
 if [ ! -d ./node_modules ]; then
-    echo "\`node_modules\` not found, installing packages..."
+    echo "$ARROW \`node_modules\` not found, installing packages..."
     $NPM install
     echo "Done."
 fi
 
 # `npm` build.
-echo "Running Vue setup..."
+echo "$ARROW Running Vue setup..."
 sudo rm -rf ./dist >/dev/null 2>&1
 $NPM run-script build
 echo "Done"
 
 # Build archive.
-echo "Building directory..."
+echo "$ARROW Building directory..."
 cd ./dist || exit 1
 tar zcvf ../lightdm-eh8.tar.gz ./*
 cd ../ || exit 1
@@ -103,7 +118,7 @@ sudo mv ./lightdm-eh8.tar.gz "$THEME_INSTALL_DIR"
 echo "Done"
 
 # Decompressing.
-echo "Entering directory and running final decompression..."
+echo "$ARROW Entering directory and running final decompression..."
 cd "$THEME_INSTALL_DIR" || exit 1
 sudo tar xvf lightdm-eh8.tar.gz
 echo "Done"

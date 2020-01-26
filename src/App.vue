@@ -59,17 +59,16 @@
         src: url('assets/fonts/InputMono-Italic.ttf');
     }
 
-    #app {
-        background-size: cover;
-    }
-
     html, body, #app, #app > *, .base > * {
         margin: 0;
         padding: 0;
 
         height: 100vh;
 
-        overflow-y:hidden;
+        overflow: hidden;
+
+        background-size: cover;
+        border-radius: $screen-radius;
     }
 
     h1, h2, h3, h4, h5, h6 {
