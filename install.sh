@@ -2,11 +2,11 @@
 
 ARROW="$(tput setaf 4)$(tput bold)->$(tput sgr0)"
 
-echo "$(tput bold)Building lightdm-eh8"
+echo "$(tput bold)Building Saluto"
 tput sgr0
 
 # Removes old installs.
-THEME_INSTALL_DIR="/usr/share/lightdm-webkit/themes/eh8"
+THEME_INSTALL_DIR="/usr/share/lightdm-webkit/themes/saluto"
 
 if [ -d "$THEME_INSTALL_DIR" ]; then
     echo "$ARROW Removing old copy of LightDM theme..."
@@ -111,16 +111,16 @@ echo "Done"
 # Build archive.
 echo "$ARROW Building directory..."
 cd ./dist || exit 1
-tar zcvf ../lightdm-eh8.tar.gz ./*
+tar zcvf ../lightdm-saluto.tar.gz ./*
 cd ../ || exit 1
 sudo mkdir -p "$THEME_INSTALL_DIR"
-sudo mv ./lightdm-eh8.tar.gz "$THEME_INSTALL_DIR" 
+sudo mv ./lightdm-saluto.tar.gz "$THEME_INSTALL_DIR"
 echo "Done"
 
 # Decompressing.
 echo "$ARROW Entering directory and running final decompression..."
 cd "$THEME_INSTALL_DIR" || exit 1
-sudo tar xvf lightdm-eh8.tar.gz
+sudo tar xvf lightdm-saluto.tar.gz
 echo "Done"
 
 echo
@@ -132,8 +132,8 @@ echo "      greeter-session=lightdm-webkit2-greeter"
 tput sgr0
 echo "  - In \`/etc/lightdm/lightdm-webkit2-greeter.conf\`:$(tput setaf 3)"
 echo "      [greeter]"
-echo "      webkit_theme=eh8"
+echo "      webkit_theme=saluto"
 tput sgr0
 echo "$(tput bold)------------$(tput sgr0)"
-echo 
+echo
 echo "All done!"

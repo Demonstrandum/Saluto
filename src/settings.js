@@ -47,6 +47,10 @@ export function avatar(avi) {
     return require("./assets/images/eh8.png");
   }
 
+  if (avi === "cicero") {
+    return require("./assets/images/cicero.png")
+  }
+
   if (avi === "eh8") {
     return require("./assets/images/eh8.png");
   }

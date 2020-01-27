@@ -1,4 +1,8 @@
-# eh8's Litarvan's LightDM WebKit2 theme
+# Saluto
+
+## Litarvan `lightdm-webkit2-greeter` fork
+
+[toc]
 
 ![](demo.png)
 

@@ -1,5 +1,5 @@
 [theme]
-name=lightdm-eh8
-description=eh8
+name=saluto
+description=lightdm-theme
 engine=lightdm-webkit-greeter
 url=index.html

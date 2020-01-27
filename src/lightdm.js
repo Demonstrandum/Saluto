@@ -49,12 +49,12 @@ if (window.lightdm_debug) {
             }
         ],
         users: [{
+            display_name: 'Marcus Tullius Cicero',
+            username: 'cicero',
+            image: 'cicero'
+        }, {
             display_name: 'John Doe',
             username: 'johnd'
-        }, {
-            display_name: 'eh8',
-            username: 'eh8',
-            image: 'eh8'
         }],
         languages: [{
             name: 'American English',

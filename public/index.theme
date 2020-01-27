@@ -1,4 +1,4 @@
 [theme]
-name=eh8
+name=saluto
 engine=lightdm-webkit-greeter
 url=index.html

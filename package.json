@@ -1,10 +1,10 @@
 {
-  "name": "lightdm-eh8",
+  "name": "lightdm-saluto",
   "version": "1.0.0",
   "license": "MIT",
-  "author": "Eric Cheng",
-  "homepage": "https://github.com/eh8/lightdm-eh8",
-  "repository": "https://github.com/eh8/lightdm-eh8",
+  "author": "Demonstrandum",
+  "homepage":   "https://github.com/Demonstrandum/Saluto",
+  "repository": "https://github.com/Demonstrandum/Saluto",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
