@@ -13,7 +13,7 @@ export let settings = local ? JSON.parse(local) : {
   disableSplashText: false,
   disableIntro: false,
   disableFade: false,
-  roundAvatar: false,
+  roundAvatar: true,
   disableAvatar: false,
   disableZoom: false,
   clock12: false,

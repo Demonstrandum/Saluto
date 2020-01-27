@@ -1,19 +1,69 @@
 # Saluto
 
-## Litarvan `lightdm-webkit2-greeter` fork
+## Litarvan `lightdm-webkit2-greeter` Theme Fork
 
 [toc]
 
-![](demo.png)
+## Installation
 
-## General tips
-1. Make sure you have node and npm on your machine. Run ```npm i``` prior to ```install.sh``` to install npm dependencies. This step is generally only necessary for first-time setup.
-1. The theme pulls ```~/Pictures/Wallpapers/background.png``` to the ```/usr/share/backgrounds``` folder. You can disable this functionality by uncommenting the respective lines in ```install.sh```
-1. To attain the same settings as the unixporn post, you'll need to disable the splash text and enable rounded avatars.
+In your shell…
 
-### Do I really have to reboot after I modify and rebuild the theme to see my changes?
+### Clone
 
-Well yes, but actually no if you just want to test out new stuff! Because of the way Vue is built by npm, I don't think there's a good way to directly modify the theme through, say, a .conf file. This being said, one way I tested changes without having to recompile, log out, and log back in again was to simply look at ```dist/index.html``` (this should appear after you build) to view the greeter in my browser!
+```sh
+git clone https://github.com/Demonstrandum/Saluto.git
+```
 
-### I have multiple desktop environments and want to select one at login
-Uncomment line 36 in ```src/views/Login.vue``` to turn on DE selection. I only use Xfce so I removed this functionality since it was unnecessary for me.
+### Build & Install
+
+```sh
+cd Saluto
+sh ./install.sh
+```
+
+You should have a read through `./install.sh` so you know what you’re running, and what you need your password for.
+
+### Editing LightDM Configurations
+
+- First make sure you’re using LightDM and `lightdm-webkit2-greeter` (which can both likely be installed with your system package manager).
+
+- Edit `/etc/lightdm/lightdm.conf` to use `lightdm-webkit2-greeter`:
+
+  ```toml
+  [Seat:*]
+  greeter-session=lightdm-webkit2-greeter
+  ```
+
+- Edit `/etc/lightdm/lightdm-webkit2-greeter.conf` to use this theme:
+
+  ```toml
+  [greeter]
+  webkit_theme=saluto
+  ```
+
+
+## Live Preview
+
+A live preview of what your greeter may look like may be viewed by either:
+
+- Opening up the `index.html` file in the `dist/` folder generated after the install script has run.
+- Launching the `lightdm-webkit2-greeter` executable, likely in your `PATH`, from your terminal or otherwise.
+- Viewing this Github–Pages site: 
+
+## Screenshots
+
+### Splash Screen
+
+![splash](https://github.com/Demonstrandum/Saluto/blob/master/demo/splash.png?raw=true)
+
+### Login Screen
+
+![login](https://github.com/Demonstrandum/Saluto/blob/master/demo/login.png?raw=true)
+
+### Login Screen with Clock
+
+![login-with-clock](https://github.com/Demonstrandum/lightdm-eh8/blob/master/demo/login-clock.png?raw=true)
+
+### Settings Screen
+
+![settings](https://github.com/Demonstrandum/Saluto/blob/master/demo/settings.png?raw=true)
