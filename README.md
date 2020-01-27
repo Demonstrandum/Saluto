@@ -2,7 +2,18 @@
 
 ## Litarvan `lightdm-webkit2-greeter` Theme Fork
 
-[toc]
+- [Saluto](#saluto)
+  * [Litarvan `lightdm-webkit2-greeter` Theme Fork](#litarvan--lightdm-webkit2-greeter--theme-fork)
+  * [Installation](#installation)
+    + [Clone](#clone)
+    + [Build & Install](#build---install)
+    + [Editing LightDM Configurations](#editing-lightdm-configurations)
+  * [Live Preview](#live-preview)
+  * [Screenshots](#screenshots)
+    + [Splash Screen](#splash-screen)
+    + [Login Screen](#login-screen)
+    + [Login Screen with Clock](#login-screen-with-clock)
+    + [Settings Screen](#settings-screen)
 
 ## Installation
 
@@ -29,14 +40,14 @@ You should have a read through `./install.sh` so you know what you’re running,
 
 - Edit `/etc/lightdm/lightdm.conf` to use `lightdm-webkit2-greeter`:
 
-  ```toml
+  ```ini
   [Seat:*]
   greeter-session=lightdm-webkit2-greeter
   ```
 
 - Edit `/etc/lightdm/lightdm-webkit2-greeter.conf` to use this theme:
 
-  ```toml
+  ```ini
   [greeter]
   webkit_theme=saluto
   ```
@@ -48,7 +59,7 @@ A live preview of what your greeter may look like may be viewed by either:
 
 - Opening up the `index.html` file in the `dist/` folder generated after the install script has run.
 - Launching the `lightdm-webkit2-greeter` executable, likely in your `PATH`, from your terminal or otherwise.
-- Viewing this Github–Pages site: 
+- Viewing this Github–Pages site: [demonstrandum.github.io/Saluto](https://demonstrandum.github.io/Saluto/)
 
 ## Screenshots
 
