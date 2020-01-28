@@ -1,6 +1,6 @@
 'use strict';
 
-const DEBUG_PASSWORD = 'test';
+const DEBUG_PASSWORD = 'password';
 
 window.lightdm_debug = window.lightdm === undefined;
 
@@ -19,6 +19,7 @@ if (window.lightdm_debug) {
 
     window.lightdm = {
         is_authenticated: false,
+        hostname: 'malorum',
         authentication_user: undefined,
         default_session: 'plasma-shell',
         can_suspend: true,

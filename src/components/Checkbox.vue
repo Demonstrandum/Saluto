@@ -4,51 +4,48 @@
 </template>
 
 <script>
-    import { color } from '../themer';
+import { color } from '../themer';
 
-    export default {
-        name: 'checkbox',
-        props: ['value'],
+export default {
+    name: 'checkbox',
+    props: ['value'],
 
-        mounted() {
+    mounted() {
+        this.updateStyle();
+    },
+    data() {
+        return {
+            checked: this.value
+        }
+    },
+
+    methods: {
+        update() {
+            this.$emit('input', this.checked = !this.checked);
             this.updateStyle();
         },
-        data() {
-            return {
-                checked: this.value
-            }
-        },
+        updateStyle() {
+            const style = this.$refs.box.style;
+            const col = this.checked ? color : null;
 
-        methods: {
-            update() {
-                this.$emit('input', this.checked = !this.checked);
-                this.updateStyle();
-            },
-            updateStyle() {
-                const style = this.$refs.box.style;
-                const col = this.checked ? color : null;
-
-                style['border-color'] = col;
-                style['background'] = col;
-            }
+            style['border-color'] = col;
+            style['background'] = col;
         }
     }
+}
 </script>
 
 <style lang="scss">
-    .checkbox {
-        border: solid 2px;
-        border-radius: 2px;
+.checkbox {
+    border: solid 2px;
+    border-radius: 2px;
+    transition: border-color 150ms ease-in-out, background 125ms ease-in-out;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
 
-        transition: border-color 150ms ease-in-out, background 125ms ease-in-out;
-
-        width: 30px;
-        height: 30px;
-
-        display: inline-block;
-    }
-
-    .checkbox:hover {
-        cursor: pointer;
-    }
+.checkbox:hover {
+    cursor: pointer;
+}
 </style>

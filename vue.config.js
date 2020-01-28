@@ -1,9 +1,12 @@
 module.exports = {
-  publicPath: '',
-  productionSourceMap: false,
-  outputDir: undefined,
-  assetsDir: undefined,
-  runtimeCompiler: undefined,
-  parallel: undefined,
-  css: undefined
+    publicPath: '',
+    productionSourceMap: false,
+    outputDir: undefined,
+    assetsDir: undefined,
+    runtimeCompiler: undefined,
+    parallel: undefined,
+    css: undefined,
+    configureWebpack: {
+        target: 'node-webkit'
+    }
 };

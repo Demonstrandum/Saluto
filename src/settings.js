@@ -1,33 +1,38 @@
 let local = localStorage.getItem("settings");
 
 if (local === "undefined") {
-  local = null;
+    local = null;
 }
 
 export let settings = local ? JSON.parse(local) : {
-  first: true,
+    first: true,
 
-  mode: "classic",
+    mode: "classic",
 
-  disableSplash: false,
-  disableSplashText: false,
-  disableIntro: false,
-  disableFade: false,
-  roundAvatar: true,
-  disableAvatar: false,
-  disableZoom: false,
-  clock12: false,
-  randomizeBG: false,
+    disableSplash: false,
+    disableSplashText: false,
+    disableIntro: false,
+    disableFade: false,
+    roundAvatar: true,
+    disableAvatar: false,
+    disableZoom: false,
+    clock12: false,
+    randomizeBG: false,
 
-  user: lightdm.users[0],
-  desktop: lightdm.sessions[0]
+    hostname: lightdm.hostname,
+    user: lightdm.users[0],
+    desktop: lightdm.sessions[0]
 };
 
-// Handle display name/avatar change.
+// Handle display name/avatar/hostname change.
+if (lightdm.hostname !== settings.hostname)
+    settings.hostname = lightdm.hostname;
+
 lightdm.users.forEach(u => {
     if (settings.user.username === u.username)
         settings.user = u;
 });
+
 lightdm.sessions.forEach(s => {
     if (settings.desktop.username === s.key)
         settings.desktop = s;
@@ -36,28 +41,28 @@ lightdm.sessions.forEach(s => {
 save();
 
 export function save(s) {
-  localStorage.setItem(
-    "settings",
-    JSON.stringify(s ? (settings = s) : settings)
-  );
+    localStorage.setItem(
+        "settings",
+        JSON.stringify(s ? (settings = s) : settings)
+    );
 }
 
 export function avatar(avi) {
-  if (!avi || avi === "") {
-    return require("./assets/images/eh8.png");
-  }
+    if (!avi || avi === "") {
+        return require("./assets/images/eh8.png");
+    }
 
-  if (avi === "cicero") {
-    return require("./assets/images/cicero.png")
-  }
+    if (avi === "cicero") {
+        return require("./assets/images/cicero.png")
+    }
 
-  if (avi === "eh8") {
-    return require("./assets/images/eh8.png");
-  }
+    if (avi === "eh8") {
+        return require("./assets/images/eh8.png");
+    }
 
-  if (avi === "litarvan") {
-    return require("./assets/images/litarvan.png");
-  }
+    if (avi === "litarvan") {
+        return require("./assets/images/litarvan.png");
+    }
 
-  return avi;
+    return avi;
 }

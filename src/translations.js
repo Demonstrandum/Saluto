@@ -94,12 +94,12 @@ const translations = {
         trigger: 'Presiona Espacio o Enter para iniciar sesión',
         password: 'Contraseña...'
     },
-    
+
     // Hebrew (TODO)
     'he': {
         trigger: 'לחץ על רווח או Enter כדי להכנס',
         password: 'ססמה...',
-        
+
         shutdown: 'מכבה...',
         suspend: 'משהה...',
         restart: 'מפעיל מחדש...',

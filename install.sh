@@ -71,9 +71,11 @@ Pictures/wallpaper"
         if [ -f "$wall" ]; then
             wall_base="$(basename "$wall")"
             echo "  $ARROW Converting $wall_base..."
-            $MAGICK -quiet -regard-warnings\
-                "$WALL_ASSETS/$wall_base" -resize 1500 -filter Gaussian -resize 25% \
-                -define filter:sigma=3 -resize 400%  "$WALL_ASSETS/blurred/$wall_base"
+            $MAGICK -quiet -regard-warnings \
+                "$WALL_ASSETS/$wall_base" -resize 1500 \
+                -filter Gaussian -resize '50%' \
+                -define filter:sigma=6 -resize '200%' \
+                "$WALL_ASSETS/blurred/$wall_base"
         fi
     done
 
@@ -81,7 +83,6 @@ Pictures/wallpaper"
     echo "$ARROW Copying wallpapers to /usr/share/backgrounds..."
     echo "  You might need to give your password for this one."
     sudo cp -rf "$WALL_ASSETS"/* /usr/share/backgrounds
-
 
     IFS="$IFS_OLD"
 fi
@@ -100,6 +101,8 @@ if [ ! -d ./node_modules ]; then
     echo "$ARROW \`node_modules\` not found, installing packages..."
     $NPM install
     echo "Done."
+else
+    echo "$ARROW \`node_moudles\` found, skipping running \`npm install\`."
 fi
 
 # `npm` build.
@@ -111,7 +114,7 @@ echo "Done"
 # Build archive.
 echo "$ARROW Building directory..."
 cd ./dist || exit 1
-tar zcvf ../lightdm-saluto.tar.gz ./*
+tar zcf ../lightdm-saluto.tar.gz ./*
 cd ../ || exit 1
 sudo mkdir -p "$THEME_INSTALL_DIR"
 sudo mv ./lightdm-saluto.tar.gz "$THEME_INSTALL_DIR"
@@ -120,7 +123,7 @@ echo "Done"
 # Decompressing.
 echo "$ARROW Entering directory and running final decompression..."
 cd "$THEME_INSTALL_DIR" || exit 1
-sudo tar xvf lightdm-saluto.tar.gz
+sudo tar xf lightdm-saluto.tar.gz
 echo "Done"
 
 echo

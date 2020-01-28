@@ -1,74 +1,95 @@
 <template>
-  <div class="power-button">
-    <div id="button-container" @click="disabled ? '' : apply()">
-      <img
-        id="power-button-icon"
-        :class="{ type }"
-        :src="require('../assets/images/' + type + '.svg')"
-      />
+    <div class="power-button">
+        <div id="button-container" @click="disabled ? '' : apply()">
+            <img id="power-button-icon"
+                :class="{ type }"
+                :src="require('../assets/images/' + type + '.svg')" />
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 import { settings } from "@/settings";
 
+export let keyboard_visible = false;
+
+export const keyboardVisible = () => keyboard_visible;
+
 export default {
-  name: "power-button",
-  props: ["type", "disabled"],
-  methods: {
-    apply() {
-      if (this.type === "back") {
-        this.$router.push(
-          settings.disableSplash || !settings.first
-            ? "/base/login"
-            : "/base/splash"
-        );
-        return;
-      }
+    name: "power-button",
+    props: {
+        type: {
+            type: String
+        },
+        disabled: {
+            type: Boolean
+        },
+        method: {
+            default: null,
+            type: Function,
+        }
+    },
+    methods: {
+        apply() {
+            if (this.type === "back") {
+                this.$router.push(
+                    settings.disableSplash || !settings.first ?
+                    "/base/login" :
+                    "/base/splash"
+                );
+                return;
+            }
 
-      if (this.type === "settings") {
-        this.$router.push("/setup");
-        return;
-      }
+            if (this.type === "settings") {
+                this.$router.push("/setup");
+                return;
+            }
 
-      if (this.type === "theming") {
-        this.$router.push("/theming");
-        return;
-      }
+            if (this.type === "theming") {
+                this.$router.push("/theming");
+                return;
+            }
 
-      setTimeout(lightdm[this.type], 1500);
-      this.$router.push(`/intro/${this.type}`);
+            if (this.type === "onboard") {
+                keyboard_visible = !keyboard_visible;
+                if (this.method !== null)
+                    this.method();
+                return;
+            }
+
+            setTimeout(lightdm[this.type], 1500);
+            this.$router.push(`/intro/${this.type}`);
+        }
+    },
+    data() {
+        return {
+            types: [
+                "shutdown", "suspend", "restart",
+                "settings", "back",
+                "onboard"
+            ]
+        };
     }
-  },
-  data() {
-    return {
-      types: ["shutdown", "suspend", "restart", "settings", "back"]
-    };
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../theme";
-
 #button-container {
-  transition: background 125ms ease-in-out;
-  border-radius: 6px;
-  line-height: 1;
+    transition: background 125ms ease-in-out;
+    border-radius: 6px;
+    line-height: 1;
 }
 
 #button-container:hover {
-  background: rgba(255, 255, 255, 0.08);
-  cursor: pointer;
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
 }
 
 #power-button-icon {
-  box-sizing: initial;
-
-  padding: 10px 10px 10px;
-
-  width: 20px;
-  height: 20px;
+    box-sizing: initial;
+    padding: 10px 10px 10px;
+    width: 20px;
+    height: 20px;
 }
 </style>
