@@ -12,8 +12,10 @@
   * [Screenshots](#screenshots)
     + [Splash Screen](#splash-screen)
     + [Login Screen](#login-screen)
+    + [Login Screen with Virtual Keyboard](#login-screen-with-virtual-keyboard)
     + [Login Screen with Clock](#login-screen-with-clock)
     + [Settings Screen](#settings-screen)
+    + [Theming Screen](#theming-screen)
 
 ## Installation
 
@@ -65,16 +67,24 @@ A live preview of what your greeter may look like may be viewed by either:
 
 ### Splash Screen
 
-![splash](https://github.com/Demonstrandum/Saluto/blob/master/demo/splash.png?raw=true)
+![splash](demo/splash.png)
 
 ### Login Screen
 
-![login](https://github.com/Demonstrandum/Saluto/blob/master/demo/login.png?raw=true)
+![login](demo/login.png)
+
+### Login Screen with Virtual Keyboard
+
+![login-keyboard](demo/login-keyboard.png)
 
 ### Login Screen with Clock
 
-![login-with-clock](https://github.com/Demonstrandum/lightdm-eh8/blob/master/demo/login-clock.png?raw=true)
+![login-clock](demo/login-clock.png)
 
 ### Settings Screen
 
-![settings](https://github.com/Demonstrandum/Saluto/blob/master/demo/settings.png?raw=true)
+![settings](demo/settings.png)
+
+### Theming Screen
+
+![theming](demo/theming.png)

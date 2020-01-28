@@ -1,9 +1,6 @@
 <template>
     <div class="clock" :class="{ 'small': small }">
-        <span id="hours">
-            {{ part !== '' ? hours : $options.filters.pad(hours) }}
-        </span>
-        :{{ minutes | pad }}
+        <span id="hours">{{ part !== '' ? hours : $options.filters.pad(hours) }}</span>:{{ minutes | pad }}
         <span id="part">{{ part }}</span>
 
         <div id="date">

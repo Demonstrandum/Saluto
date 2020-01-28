@@ -37,8 +37,8 @@ if (window.lightdm_debug) {
                 key: 'xfce'
             },
             {
-                name: 'Cinnamon',
-                key: 'cinnamon'
+                name: 'BSPWM',
+                key: 'bspwm'
             },
             {
                 name: 'i3wm',

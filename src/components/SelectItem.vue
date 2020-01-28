@@ -47,6 +47,8 @@ export default {
                     icon = "kde";
                 } else if (key.indexOf("gnome") > -1) {
                     icon = "gnome";
+                } else if (key.indexOf("bspwm") > -1) {
+                    icon = "bspwm";
                 } else if (key.indexOf("xfce") > -1) {
                     icon = "xfce";
                 } else if (key.indexOf("unity") > -1 || key.indexOf("ubuntu") > -1) {
